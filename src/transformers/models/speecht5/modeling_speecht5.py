@@ -3361,7 +3361,8 @@ class SpeechT5HifiGan(PreTrainedModel):
 
         hidden_states = nn.functional.leaky_relu(hidden_states)
         hidden_states = self.conv_post(hidden_states)
-        hidden_states = torch.tanh(hidden_states)
+        # hidden_states = torch.tanh(hidden_states)
+        hidden_states = torch.tanh(hidden_states).clone()
 
         if not is_batched:
             # remove batch dim and collapse tensor to 1-d audio waveform
